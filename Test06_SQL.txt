@@ -1,0 +1,25 @@
+WITH products_2016 AS (
+    SELECT p.product_name, SUM(od.quantity) as total_quantity_sold
+    FROM order_details od
+    JOIN orders o ON od.order_id = o.order_id
+    JOIN products p ON od.product_id = p.product_id
+    WHERE YEAR(o.order_date) = 2016
+    GROUP BY p.product_name
+    ORDER BY total_quantity_sold DESC
+    LIMIT 5
+),
+products_2017 AS (
+    SELECT p.product_name, SUM(od.quantity) as total_quantity_sold
+    FROM order_details od
+    JOIN orders o ON od.order_id = o.order_id
+    JOIN products p ON od.product_id = p.product_id
+    WHERE YEAR(o.order_date) = 2017
+    GROUP BY p.product_name
+    ORDER BY total_quantity_sold DESC
+    LIMIT 5
+)
+SELECT product_name
+FROM top_products_2016
+INTERSECT
+SELECT product_name
+FROM top_products_2017;
