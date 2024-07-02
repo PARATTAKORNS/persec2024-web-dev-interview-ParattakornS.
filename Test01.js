@@ -66,7 +66,7 @@ function CodeColor(hexcolor) {
         return { R: rgb[0], G: rgb[1], B: rgb[2] };
     }
 }
-var input = "#abc"; // or any other input value
+var input = "#abc"; // แก้ไข input ได้เลยครับ
 var result = CodeColor(input);
 if (typeof result === "string") {
     console.log(result);
